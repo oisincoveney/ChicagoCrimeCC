@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import { Link, Router } from '@reach/router';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Map from './pages/Map/Map';
+import 'bootstrap/dist/css/bootstrap.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const NavLink = props => (
+    <Link
+      {...props}
+      getProps={({ isCurrent }) => {
+        // the object returned here is passed to the
+        // anchor element's props
+        return {
+          style: {
+            color: isCurrent ? "red" : "blue"
+          }
+        };
+      }}
+    />
   );
+
+
+const App = () => {
+
+    
+    return (
+        <div className="container-fluid">
+            123
+            {/* <nav className="navbar-dark bg-dark">
+                <div className="container-fluid">
+                    <span className="navbar-brand">Chicago Crime Analysis</span>
+                    <Link className="nav-link" to='/'>Dashboard</Link>
+                    <Link className="nav-link" to='map'>Map</Link>
+                </div>
+            </nav> */}
+            <Router>
+                <Dashboard path='/'/>
+                <Map path='map' />
+            </Router>
+        </div>        
+    );
 }
 
 export default App;
