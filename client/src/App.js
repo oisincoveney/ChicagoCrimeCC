@@ -2,7 +2,6 @@ import './App.css';
 import { Link, Router } from '@reach/router';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Map from './pages/Map/Map';
-import 'bootstrap/dist/css/bootstrap.css';
 
 const NavLink = props => (
     <Link
@@ -12,7 +11,8 @@ const NavLink = props => (
         // anchor element's props
         return {
           style: {
-            color: isCurrent ? "red" : "blue"
+            fontWeight: isCurrent ? 'bold' : 'normal',
+            borderBottom: isCurrent ? '1px solid black' : 'none'
           }
         };
       }}
@@ -25,14 +25,19 @@ const App = () => {
     
     return (
         <div className="container-fluid">
-            123
-            {/* <nav className="navbar-dark bg-dark">
-                <div className="container-fluid">
-                    <span className="navbar-brand">Chicago Crime Analysis</span>
-                    <Link className="nav-link" to='/'>Dashboard</Link>
-                    <Link className="nav-link" to='map'>Map</Link>
+            <nav className="navbar-light bg-light">
+                <div className="container-fluid d-flex align-items-center">
+                    <span className="navbar-brand py-2 ml-2">Chicago Crime Analysis</span>
+                    <div className="navlink-container py-2 d-flex">
+                        <li>
+                            <NavLink className="nav-link" to='/'>Dashboard</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="nav-link" to='map'>Map</NavLink>
+                        </li>
+                    </div>
                 </div>
-            </nav> */}
+            </nav>
             <Router>
                 <Dashboard path='/'/>
                 <Map path='map' />
