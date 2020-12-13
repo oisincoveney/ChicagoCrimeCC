@@ -11,3 +11,7 @@ li {
   list-style-type: none;
   width: 180px;
 }
+
+.navbar-light {
+  max-height: 70px;
+}
