@@ -11,16 +11,14 @@
     "@testing-library/user-event": "^12.5.0",
     "autoprefixer": "^9.8.6",
     "bootstrap": "^5.0.0-beta1",
-<<<<<<< HEAD
-    "d3": "^6.3.1",
-=======
     "craco": "0.0.3",
->>>>>>> c6521f8620df17a46b071bb511cc9a370fe7cd50
+    "d3": "^6.3.1",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "topojson": "^3.0.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
