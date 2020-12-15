@@ -12,31 +12,22 @@ const Dashboard = (props) => {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    let tmp = []
-    testRef.ref('Crimes/').once('value').then(snapshot => {
-      tmp.push(snapshot.id)
-    }).then(() => {
-      setData(tmp)
-    })
-  })
 
-  
-  // const {status, data} = useFirestoreDocData(testRef)
-  
+    const fetchData = async () => {
+      await testRef.ref('Crimes/').orderByKey().limitToFirst(10).once('value').then(snapshot => {
+        setData(snapshot.exportVal())
+      })
+    }
 
-  // if (status === 'loading') {
-    // return <h1>Hello!!</h1>
-  // }
+    fetchData()
 
-
-
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <SuspenseWithPerf fallback={'loading burrito status...'} traceId={'load-burrito-status'}>
       <div id="vis-container" ref={container}></div>
       <BarChart></BarChart>
-      {JSON.stringify(Object.keys(testRef))}
       {JSON.stringify(data)}
     </SuspenseWithPerf>
   )
