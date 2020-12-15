@@ -1,16 +1,27 @@
-import React, {useRef} from 'react';
-import PropTypes from 'prop-types';
-//import { Test } from './Dashboard.styles';
+import React, { useRef } from 'react';
 import BarChart from './BarChart/index'
+import { useFirestoreDocData, useDatabase, SuspenseWithPerf } from 'reactfire';
+import 'firebase/database'
+
 
 const Dashboard = (props) => {
-  const dashElement = useRef(null);
+
+  const container = useRef(null)
+  const testRef = useDatabase()
+
+  // const {status, data} = useFirestoreDocData(testRef)
+  
+  // if (status === 'loading') {
+    // return <h1>Hello!!</h1>
+  // }
 
   return (
-    <div className="DashboardWrapper">
-      <div id="vis-container" ref={dashElement}></div>
+    <SuspenseWithPerf fallback={'loading burrito status...'} traceId={'load-burrito-status'}>
+      <div id="vis-container" ref={container}></div>
       <BarChart></BarChart>
-    </div>
+      {JSON.stringify(Object.keys(testRef))}
+      {/* {JSON.stringify(data)} */}
+    </SuspenseWithPerf>
   )
 };
 
