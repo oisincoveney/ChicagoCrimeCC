@@ -13,7 +13,7 @@
 Visualise crime activities happened in Chicago in 2012-2017
 
 ### Documentation
-[(to be added once completed)](#)
+[(Link to Overleaf doc)](https://www.overleaf.com/project/5fbff30bdfa3906a62492aa6)
 
 
 ### Tasks list
