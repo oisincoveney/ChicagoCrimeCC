@@ -33,7 +33,7 @@ const App = () => {
                             <NavLink className="nav-link" to='/'>Dashboard</NavLink>
                         </li>
                         <li>
-                            <NavLink className="nav-link" to='map'>Map</NavLink>
+                            <NavLink className="nav-link" to='map' >Map</NavLink>
                         </li>
                     </div>
                 </div>
