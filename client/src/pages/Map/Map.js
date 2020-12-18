@@ -36,14 +36,8 @@ const Map = React.memo(function Map() {
         lng: -87
     }
 
-    // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
     const db = useDatabase();
-
-    // db.ref('/Location').equalTo()
-    //     <Marker
-    //         onLoad={onLoad}
-    //         position
 
     const [data, setData] = useState([]);
 
@@ -64,13 +58,6 @@ const Map = React.memo(function Map() {
     //         });
     //     });
     // });
-
-    function setMapOnAll() {
-        for (let i = 0; i < markers.length; i++) {
-            markers[i].setMap(null);
-        }
-    }
-
 
     useEffect(() => {
         

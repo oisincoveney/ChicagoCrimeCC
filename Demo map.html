@@ -1,0 +1,113 @@
+
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>insert page</title></head>
+<body>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+
+
+
+
+<script>
+
+
+
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyAwNJVt9yQmEEH-W9sUFRu3phElU3IVVTA",
+    authDomain: "ca675-59605.firebaseapp.com",
+    databaseURL: "https://ca675-59605-default-rtdb.firebaseio.com",
+    projectId: "ca675-59605",
+    storageBucket: "ca675-59605.appspot.com",
+    messagingSenderId: "115195367191",
+    appId: "1:115195367191:web:d32924627b2c6ee5d43152",
+    measurementId: "G-Z0CV51HVKN"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+
+</script>
+
+<div id="map_canvas" style="width:1000px; height:1000px"></div>
+
+
+
+<script>
+  
+    function initMap() {
+        var latlng = new google.maps.LatLng(41.723340547,-87.625074428);
+        var myOptions = { zoom: 9, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        var ref=firebase.database().ref("Crimes"); 
+        
+        ref.limitToFirst(100).on('value',function (snapshot) {
+            var val = snapshot.val();
+            console.log(val);
+         //   console.log(val[0].Lat + '  ' + val[0].Lng);
+            snapshot.forEach(function(childSnapshot) {
+            var childData = childSnapshot.val();
+   
+             console.log(childData.Latitude + '  ' + childData.Longitude);
+             
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(childData.Latitude),
+                    lng: parseFloat(childData.Longitude),
+                },
+                map: map,
+                title: childData["Case Number"]
+            });
+
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var msg = "<b>Description: </b> " + childData.Description + "<br/> <b>Case Number: </b>" + childData["Case Number"] + "<br/> <b>Date: </b>" + childData.Date;
+
+            makeInfoWindowEvent(map, infowindow, msg, marker);
+
+        
+
+
+
+
+        });
+
+
+        function makeInfoWindowEvent(map, infowindow, contentString, marker) {
+            google.maps.event.addListener(marker, 'click', function() {
+             infowindow.setContent(contentString);
+              infowindow.open(map, marker);
+                });
+               }
+
+        });
+
+
+    }
+</script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUhxyCGx2Ky-s-PnA-X1XD8aFN50O7gok&callback=initMap"
+  type="text/javascript"></script>
+
+
+
+
+
+</body>
+</html>
