@@ -19,8 +19,8 @@ Visualise crime activities happened in Chicago in 2012-2017
 ### Tasks list
 - [x] Choose dataset
 - [x] Decide on tools to be used
-- [ ] ELT the data using spark
-- [ ] Consider SQL queries for visualisation
-- [ ] Dashboard with React & D3.js
-- [ ] Maps visualisation with React & Google Maps API/Leaflet
+- [x] ELT the data using spark
+- [x] Consider SQL queries for visualisation
+- [x] Dashboard with React & D3.js
+- [x] Maps visualisation with React & Google Maps API/Leaflet
 
